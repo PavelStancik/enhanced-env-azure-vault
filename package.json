@@ -1,0 +1,35 @@
+{
+  "name": "@pavelstancik/enhanced-env-azure-vault",
+  "version": "1.0.1",
+  "description": "Managing environment variables using Azure Key Vault tags",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "prebuild": "rimraf dist/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Pavel Stancik",
+    "email": "info@infowebsrso.cz"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@azure/identity": "^1.3.0",
+    "@azure/keyvault-secrets": "^4.1.0",
+    "dotenv": "^8.2.0",
+    "progress": "^2.0.3"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "tslint": "^6.1.3",
+    "@types/node": "^15.0.1",
+    "typescript": "^4.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PavelStancik/enhanced-env-azure-vault.git"
+  },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  }
+}
