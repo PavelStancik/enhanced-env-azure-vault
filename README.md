@@ -30,7 +30,7 @@ Send all your environment variables to your azure key vault.
 
 Setup process is described in /examples/insert.ts.
 
-```bash
+```javascript
 
 // enhanced-env-azure-vault expects the following environment variables
 // KEY_VAULT_URI: The keyvault uri in Azure
@@ -55,11 +55,34 @@ const result = await manager.setup({ envKeys });
 
 ### Load Variables in your app.
  
-```bash
-const manager = require('environment-manager');
+```javascript
+const manager = require('enhanced-env-azure-vault');
 const result = await manager.init({ envKeys });
 
 ```
   
-### Example with express.js 
-Coming Soon  
+### Getting all Variables from Azure, based on tags. 
+
+```javascript
+const scanVault = async (): Promise<secretObject[]> => {
+  return await manager.listAll();
+};
+
+scanVault()
+  .then(async (res) => {
+    await res.forEach((element) => {
+      if (element.tags && element.tags.type === "backend") {
+        console.log(element);
+        getEnv(element.name).then((env) => console.log(process.env));
+      }
+    });
+  })
+  .then((env) => console.log(env))
+  .catch((err) => {
+    console.log("Error scanning Azure Vault: ", err);
+  });
+
+// Now we can distinguish for example [testing / staging / production] environments
+// AND type: [backend / frontend]
+// OR utiliye any other tag patterns 
+```
