@@ -21,10 +21,8 @@ interface envResult {
  * @param underscoreReplacedBy
  * @returns {Promise<void>}
  */
-async function listAll (): Promise<envResult[]> {
+async function listAll (underscoreReplacedBy: string = '0x'): Promise<envResult[]> {
 
-
-    const underscoreReplacedBy = '0x';
     let arrSecrets = [];
 
     

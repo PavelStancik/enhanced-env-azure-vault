@@ -7,7 +7,7 @@ import * as manager from '../index';
 const getEnv = async () => {
 
     console.log('Getting ENV params from Azure Key Vault');
-    const result = await manager.listAll();
+    const result = await manager.listAll('0x');
     result.forEach(element => {
 
         console.log(element.name);
