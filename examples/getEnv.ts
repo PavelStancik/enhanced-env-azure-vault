@@ -1,4 +1,4 @@
-const manager = require('../index');
+import * as manager from '../index';
 
 /**
  * Gets environment variables out of Azure Key Vault

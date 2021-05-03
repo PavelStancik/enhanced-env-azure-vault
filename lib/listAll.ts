@@ -1,12 +1,27 @@
 import { client } from "./key-vault/index";
 
+
+interface envResult {
+    
+    expiresOn: string,
+    createdOn: Date,
+    updatedOn: Date,
+    id: string,
+    tags: { environment: string, type: string },
+    vaultUrl: string,
+    name: string,
+    version: number,
+    enabled: boolean,
+    recoverableDays: number,
+    recoveryLevel: string
+}
 /**
  * Load all environment variables from key-vault.
  *
  * @param underscoreReplacedBy
  * @returns {Promise<void>}
  */
-async function listAll () {
+async function listAll (): Promise<envResult[]> {
 
 
     const underscoreReplacedBy = '0x';

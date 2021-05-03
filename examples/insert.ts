@@ -14,11 +14,11 @@ const envKeys = [
 const underscoreReplacedBy = '0x';
 const prefix = '';
 
-const getEnv = async (): Promise<void> => {
+const setEnv = async (): Promise<void> => {
 
     console.log('Getting ENV params from Azure Key Vault');
     await manager.setup({ envKeys, underscoreReplacedBy, prefix });
 
 };
 
-getEnv();
+setEnv();

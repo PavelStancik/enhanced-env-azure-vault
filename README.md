@@ -56,7 +56,7 @@ const result = await manager.setup({ envKeys });
 ### Load Variables in your app.
  
 ```javascript
-const manager = require('enhanced-env-azure-vault');
+import * as manager from 'enhanced-env-azure-vault';
 const result = await manager.init({ envKeys });
 
 ```
