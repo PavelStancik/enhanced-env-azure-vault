@@ -13,7 +13,8 @@ interface envResult {
     version: number,
     enabled: boolean,
     recoverableDays: number,
-    recoveryLevel: string
+    recoveryLevel: string,
+    value: string
 }
 /**
  * Load all environment variables from key-vault.
@@ -21,7 +22,7 @@ interface envResult {
  * @param underscoreReplacedBy
  * @returns {Promise<void>}
  */
-async function listAll (underscoreReplacedBy: string = '0x'): Promise<envResult[]> {
+async function listAll (tagType: string, underscoreReplacedBy: string = '0x'): Promise<envResult[]> {
 
     let arrSecrets = [];
 
@@ -32,8 +33,13 @@ async function listAll (underscoreReplacedBy: string = '0x'): Promise<envResult[
                 
                 for await (let secretProperties of client.listPropertiesOfSecrets()) {
 
+                const azureSecret = await client.getSecret(secretProperties.name);
                 secretProperties.name = (secretProperties.name).split(underscoreReplacedBy).join('_');
-                arrSecrets.push(secretProperties);
+
+                if (secretProperties.tags && secretProperties.tags.type === tagType) {
+                    secretProperties['value'] = azureSecret.value;
+                    arrSecrets.push(secretProperties);
+                }
 
             }
 
