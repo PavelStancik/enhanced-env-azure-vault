@@ -7,15 +7,15 @@ import * as manager from '../index';
 const getEnv = async () => {
 
     console.log('Getting ENV params from Azure Key Vault');
-    const result = await manager.listAll('0x');
+    const result = await manager.listAll('frontend','0x');
     result.forEach(element => {
 
-        console.log(element.name);
+        console.log(`${element.name}: ${element.value}`);
         
         if (element.tags) {
 
-            console.log('\t', element.tags.environment);
-            console.log('\t', element.tags.type);
+            console.log(' tag environment:', element.tags.environment);
+            console.log(' tag type:', element.tags.type);
 
         }
 
@@ -23,4 +23,4 @@ const getEnv = async () => {
 
 };
 
-getEnv().then((res) => console.log(res));
+getEnv().then((res) => console.log("Done."));
