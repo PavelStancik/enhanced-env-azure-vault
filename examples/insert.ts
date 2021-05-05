@@ -6,13 +6,13 @@ import * as manager from '../index';
 const envKeys = [
 
     { name: 'API_URL', value: 'AA', tags: { environment: 'testing', type: 'backend' } },
-    { name: 'API_URL_FE', value: 'AA', tags: { environment: 'staging', type: 'frontend' } }
+    { name: 'API_URL_FE', value: 'AA', tags: { environment: 'testing', type: 'frontend' } }
 
     // Any other variables
 ];
 
 const underscoreReplacedBy = '0x';
-const prefix = '';
+const prefix = 'TEST';
 
 const setEnv = async (): Promise<void> => {
 

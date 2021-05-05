@@ -48,7 +48,7 @@ async function setup ({
     for (const item of envFieldsArray) {
 
         const stripped = item.name.split('_').join(underscoreReplacedBy);
-        const secretName = `${prefix}${stripped}`;
+        const secretName = `${prefix}-${stripped}`;
         const value = item.value;
         const tags = item.tags;
 
