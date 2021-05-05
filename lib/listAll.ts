@@ -14,7 +14,8 @@ interface envResult {
     enabled: boolean,
     recoverableDays: number,
     recoveryLevel: string,
-    value: string
+    value: string,
+    environment: string
 }
 /**
  * Load all environment variables from key-vault.
@@ -22,10 +23,10 @@ interface envResult {
  * @param underscoreReplacedBy
  * @returns {Promise<void>}
  */
-async function listAll (tagType: string = '', underscoreReplacedBy: string = '0x'): Promise<envResult[]> {
+async function listAll (prefix: string, tagType: string = '', underscoreReplacedBy: string = '0x'): Promise<envResult[]> {
 
     let arrSecrets = [];
-
+    const envPrefix = `${prefix}-`;
     
         return new Promise( async (resolve, reject) => {
 
@@ -34,14 +35,17 @@ async function listAll (tagType: string = '', underscoreReplacedBy: string = '0x
                 for await (let secretProperties of client.listPropertiesOfSecrets()) {
 
                 const azureSecret = await client.getSecret(secretProperties.name);
-                secretProperties.name = (secretProperties.name).split(underscoreReplacedBy).join('_');
+                secretProperties.name = ((secretProperties.name).split(underscoreReplacedBy).join('_')); //.replace(envPrefix, "")
 
-                if (tagType !== '' && secretProperties.tags && secretProperties.tags.type === tagType) {
+                if (tagType !== '' && secretProperties.tags && secretProperties.tags.type === tagType && secretProperties.name.startsWith(envPrefix)) {
+                    secretProperties['name'] = (secretProperties.name).replace(envPrefix, "");
                     secretProperties['value'] = azureSecret.value;
+                    secretProperties['environment'] = prefix;
                     arrSecrets.push(secretProperties);
                 } 
-                else if (tagType === '') {
+                else if (tagType === '' && prefix ==='') {
                     secretProperties['value'] = azureSecret.value;
+                    secretProperties['environment'] = prefix;
                     arrSecrets.push(secretProperties);
                 }
 

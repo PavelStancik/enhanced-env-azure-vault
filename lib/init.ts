@@ -1,5 +1,23 @@
 import ProgressBar from "progress";
 import { client }  from "./key-vault/index";
+
+interface environmentParams {
+
+    [x: string]: any;
+    name: string;
+    value: string;
+    tags: {
+        environment: string;
+        type: string;
+    };
+}[];
+
+interface setupOptions {
+    envKeys: environmentParams | any[],
+    underscoreReplacedBy: string,
+    prefix: string
+}
+
 /**
  * Load all environment variables from key-vault.
  *
@@ -8,15 +26,17 @@ import { client }  from "./key-vault/index";
  * @returns {Promise<void>}
  */
 async function init ({
-    envKeys = {},
-    underscoreReplacedBy = '0x'
-}) {
+    envKeys = [],
+    underscoreReplacedBy = '0x',
+    prefix
+}: setupOptions ): Promise<void> {
 
+    const envPrefix = `${prefix}-`;
     const keys = Object.keys(envKeys).map(key => {
 
         return {
             name: key,
-            secretName: key.split('_').join(underscoreReplacedBy)
+            secretName: envPrefix+key.split('_').join(underscoreReplacedBy)
         };
 
     });
