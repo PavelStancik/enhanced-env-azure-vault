@@ -22,7 +22,7 @@ interface envResult {
  * @param underscoreReplacedBy
  * @returns {Promise<void>}
  */
-async function listAll (tagType: string, underscoreReplacedBy: string = '0x'): Promise<envResult[]> {
+async function listAll (tagType: string = '', underscoreReplacedBy: string = '0x'): Promise<envResult[]> {
 
     let arrSecrets = [];
 
@@ -36,7 +36,11 @@ async function listAll (tagType: string, underscoreReplacedBy: string = '0x'): P
                 const azureSecret = await client.getSecret(secretProperties.name);
                 secretProperties.name = (secretProperties.name).split(underscoreReplacedBy).join('_');
 
-                if (secretProperties.tags && secretProperties.tags.type === tagType) {
+                if (tagType !== '' && secretProperties.tags && secretProperties.tags.type === tagType) {
+                    secretProperties['value'] = azureSecret.value;
+                    arrSecrets.push(secretProperties);
+                } 
+                else if (tagType === '') {
                     secretProperties['value'] = azureSecret.value;
                     arrSecrets.push(secretProperties);
                 }
