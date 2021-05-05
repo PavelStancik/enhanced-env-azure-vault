@@ -4,10 +4,10 @@ import * as manager from '../index';
  * Gets environment variables out of Azure Key Vault
  */
 
-const getEnv = async () => {
+const getEnv = async (tagType: string = '') => {
 
     console.log('Getting ENV params from Azure Key Vault');
-    const result = await manager.listAll('frontend','0x');
+    const result = await manager.listAll(tagType,'0x');
     result.forEach(element => {
 
         console.log(`${element.name}: ${element.value}`);
@@ -23,4 +23,5 @@ const getEnv = async () => {
 
 };
 
+getEnv('backend').then((res) => console.log("Done."));
 getEnv().then((res) => console.log("Done."));
