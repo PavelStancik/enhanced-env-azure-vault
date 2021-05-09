@@ -1,6 +1,6 @@
 {
-  "name": "@pavelstancik/enhanced-env-azure-vault",
-  "version": "1.2.0",
+  "name": "enhanced-env-azure-vault",
+  "version": "1.2.1",
   "description": "Managing environment variables using Azure Key Vault tags",
   "main": "dist/index.js",
   "scripts": {
@@ -30,6 +30,6 @@
     "url": "https://github.com/PavelStancik/enhanced-env-azure-vault.git"
   },
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com"
+    "registry":"https://registry.npmjs.org"
   }
 }
