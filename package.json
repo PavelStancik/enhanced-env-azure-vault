@@ -1,6 +1,6 @@
 {
   "name": "enhanced-env-azure-vault",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Managing environment variables using Azure Key Vault tags",
   "main": "dist/index.js",
   "scripts": {
