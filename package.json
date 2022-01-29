@@ -19,7 +19,7 @@
     "@azure/keyvault-secrets": "^4.3.0",
     "dotenv": "^10.0.0",
     "progress": "^2.0.3",
-    "ts-node": "^10.2.1"
+    "ts-node": "^10.3.0"
   },
   "devDependencies": {
     "@types/node": "^16.7.2",
