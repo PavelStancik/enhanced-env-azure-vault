@@ -26,5 +26,5 @@ const getEnv = async (tagType: string = '', prefix: string = '') => {
 };
 
 //getEnv('frontend', 'TEST').then((res) => console.log("Done."));
-getEnv('', 'STAGE').then((res) => console.log("Done."));
-getEnv().then((res) => console.log("Done."));
+getEnv('backend', 'TEST').then((res) => console.log("Done."));
+//getEnv().then((res) => console.log("Done."));
