@@ -17,7 +17,7 @@
   "dependencies": {
     "@azure/identity": "^2.0.1",
     "@azure/keyvault-secrets": "^4.3.0",
-    "dotenv": "^14.3.2",
+    "dotenv": "^16.0.1",
     "progress": "^2.0.3",
     "ts-node": "^10.4.0"
   },
